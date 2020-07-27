@@ -7,3 +7,17 @@
 .disabled{
     pointer-events: none;
 }
+
+table.disabled{
+    opacity: 0.4;
+}
+
+.data-table{
+    position: relative;
+}
+
+.spinner{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}

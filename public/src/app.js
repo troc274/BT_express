@@ -9,8 +9,10 @@ function productController($scope, $http) {
   $scope.countModel = "5";
   $scope.currenPage = 1;
   $scope.totalPage = [];
+  $scope.loading = false;
 
   $scope.getListProduct = (number = null, type = null) => {
+    $scope.loading = true;
     if (number) $scope.currenPage = number;
     if (type) {
       switch (type) {
@@ -33,6 +35,7 @@ function productController($scope, $http) {
           totalPage.push(i);
         }
         $scope.totalPage = totalPage;
+        $scope.loading = false;
       });
   };
 
