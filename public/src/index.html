@@ -30,10 +30,10 @@
                         <tbody>
                             <tr ng-repeat="product in listProduct">
                                 <td class="text-left">{{ product.title }}</td>
-                                <td>{{ product.sku}}</td>
-                                <td>{{ product.barcode}}</td>
-                                <td>{{ product.inventory_quantity}}</td>
-                                <td>{{ product.price}}</td>
+                                <td>{{ product.variants.sku}}</td>
+                                <td>{{ product.variants.barcode}}</td>
+                                <td>{{ product.variants.inventory_quantity}}</td>
+                                <td>{{ product.variants.price}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -46,18 +46,18 @@
                         <ul class="pagination m-0">
                             <li class="page-item" ng-click="getListProduct(null, 'prev')"
                                 ng-class="{'disabled': currenPage == 1}">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
+                                <a class="page-link">
+                                    <span>&laquo;</span>
                                 </a>
                             </li>
                             <li class="page-item" ng-repeat="number in totalPage"
                                 ng-class="{'active': number == currenPage}" ng-click="getListProduct(number)">
-                                <a class="page-link" href="#">{{ number }}</a>
+                                <a class="page-link">{{ number }}</a>
                             </li>
                             <li class="page-item" ng-click="getListProduct(null, 'next')" ng-class="{'disabled': currenPage ==
                                     totalPage.length}">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
+                                <a class="page-link">
+                                    <span>&raquo;</span>
                                 </a>
                             </li>
                         </ul>

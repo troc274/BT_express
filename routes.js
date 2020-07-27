@@ -3,6 +3,7 @@ import dataShopHelper from './dataShopHelper'
 import Product from './models/product';
 import { CONNREFUSED } from 'dns';
 import { count } from 'console';
+import { get } from 'request';
 const xlsxFile = require('read-excel-file/node');
 const parser = require('xml2json');
 const xlsx = require('node-xlsx');
@@ -189,14 +190,27 @@ postRouter.get('/product', (req, res) => {
         params.count = (params.limit * params.page - params.limit)
         params.getCountProduct = params.limit * params.page
         dataShopHelper.getCount((getCount) => {
-            totalPage = Math.ceil(getCount.count / params.limit)
             if (typeof (getCount) != "object") return res.json({ message: "Loi data" })
             dataShopHelper.getData(getCount, (getData) => {
                 dataShopHelper.getDataOfPageLimit(getData, params, (data) => {
-                    data.totalPage = totalPage
+                    data.totalPage = Math.ceil(getData.length / params.limit)
                     return res.send(data)
                 })
             })
+        })
+    }
+    catch (error) {
+        console.log(error)
+    }
+})
+
+postRouter.get('/product/info', (req, res) => {
+    let getData, params, result = [], totalPage
+    try {
+        params = req.query
+        dataShopHelper.getInfoProduct(params, (data) => {
+            if (!data) return res.json({ message: "Sản phẩm không tồn tại" })
+            return res.send(data)
         })
     }
     catch (error) {

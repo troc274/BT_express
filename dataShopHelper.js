@@ -37,10 +37,12 @@ module.exports = {
 
                     dataOfKeyObject.id = getDataOfPage[i].id
                     dataOfKeyObject.title = getDataOfPage[i].title
-                    dataOfKeyObject.sku = getDataOfPage[i].variants[b].sku
-                    dataOfKeyObject.barcode = getDataOfPage[i].variants[b].barcode
-                    dataOfKeyObject.inventory_quantity = getDataOfPage[i].variants[b].inventory_quantity
-                    dataOfKeyObject.price = getDataOfPage[i].variants[b].price
+                    // dataOfKeyObject.sku = getDataOfPage[i].variants[b].sku
+                    // dataOfKeyObject.barcode = getDataOfPage[i].variants[b].barcode
+                    // dataOfKeyObject.inventory_quantity = getDataOfPage[i].variants[b].inventory_quantity
+                    // dataOfKeyObject.price = getDataOfPage[i].variants[b].price
+
+                    dataOfKeyObject.variants = getDataOfPage[i].variants[b]
 
                     dataObject.push(dataOfKeyObject)
                 }
@@ -121,4 +123,27 @@ module.exports = {
         result.product = product
         return done(result)
     },
+    getInfoProduct: (params, done) => {
+        let reqData, dataParse, product
+
+        reqData = {
+            method: "get",
+            headers: {
+                "Authorization": "Bearer eZZ73UWykaOPRjx5ep7i2J6Jf3E_iNa6BoVEAdm7sOM",
+                "Content-Type": "application/json"
+            }
+        }
+        requestHelper.Request.http(reqData, `https://apis.haravan.com/com/products/${params.productId}.json`, async (err, res) => {
+            if (res.statusCode != 200 || err) return done(null)
+            dataParse = JSON.parse(res.response)
+            product = dataParse.product
+            for (let i = 0; i < product.variants.length; i++) {
+                console.log(params.variantId, product.variants[i].id)
+                if (params.variantId == product.variants[i].id) {
+                    product.variants = product.variants[i]
+                }
+            }
+            return done(product)
+        })
+    }
 }
