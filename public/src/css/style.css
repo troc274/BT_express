@@ -1,0 +1,9 @@
+.tool{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.disabled{
+    pointer-events: none;
+}
