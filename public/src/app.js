@@ -38,7 +38,7 @@ function productController($scope, $http) {
                 $scope.loading = false;
             });
     };
-    $scope.geProductInfo = (productId, variantId) => {
+    $scope.getProductInfo = (productId, variantId) => {
         $http
             .get(`/product/info?productId=${productId}&variantId=${variantId}`)
             .then((result) => {
