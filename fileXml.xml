@@ -1,0 +1,234 @@
+<Table>
+<Row>
+<Cell><Data Type="String">id</Data></Cell>
+<Cell><Data Type="String">title</Data></Cell>
+<Cell><Data Type="String">variantsId</Data></Cell>
+<Cell><Data Type="String">variantsTitle</Data></Cell>
+<Cell><Data Type="String">price</Data></Cell>
+<Cell><Data Type="String">sku</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026486591</Data></Cell>
+<Cell><Data Type="String">Burton Custom Freestlye 151</Data></Cell>
+<Cell><Data Type="String">1058495311</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">0</Data></Cell>
+<Cell><Data Type="String">null</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026485853</Data></Cell>
+<Cell><Data Type="String">Burton Custom Freestlye 151</Data></Cell>
+<Cell><Data Type="String">1058494538</Data></Cell>
+<Cell><Data Type="String">First</Data></Cell>
+<Cell><Data Type="Number">10</Data></Cell>
+<Cell><Data Type="String">123</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026485853</Data></Cell>
+<Cell><Data Type="String">Burton Custom Freestlye 151</Data></Cell>
+<Cell><Data Type="String">1058494539</Data></Cell>
+<Cell><Data Type="String">Second</Data></Cell>
+<Cell><Data Type="Number">20</Data></Cell>
+<Cell><Data Type="String">123</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026485074</Data></Cell>
+<Cell><Data Type="String">Burton Custom Freestlye 151</Data></Cell>
+<Cell><Data Type="String">1058493671</Data></Cell>
+<Cell><Data Type="String">Second</Data></Cell>
+<Cell><Data Type="Number">20</Data></Cell>
+<Cell><Data Type="String">123</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026485074</Data></Cell>
+<Cell><Data Type="String">Burton Custom Freestlye 151</Data></Cell>
+<Cell><Data Type="String">1058493670</Data></Cell>
+<Cell><Data Type="String">First</Data></Cell>
+<Cell><Data Type="Number">10</Data></Cell>
+<Cell><Data Type="String">123</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026483652</Data></Cell>
+<Cell><Data Type="String">Burton Custom Freestlye 151</Data></Cell>
+<Cell><Data Type="String">1058492127</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">0</Data></Cell>
+<Cell><Data Type="String">null</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026461418</Data></Cell>
+<Cell><Data Type="String">Quần A</Data></Cell>
+<Cell><Data Type="String">1058451232</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">500000</Data></Cell>
+<Cell><Data Type="String">QNIKE</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026483649</Data></Cell>
+<Cell><Data Type="String">Burton Custom Freestlye 151</Data></Cell>
+<Cell><Data Type="String">1058492118</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">0</Data></Cell>
+<Cell><Data Type="String">null</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026475762</Data></Cell>
+<Cell><Data Type="String">Burton Custom Freestlye 151</Data></Cell>
+<Cell><Data Type="String">1058478121</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">0</Data></Cell>
+<Cell><Data Type="String">null</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026460709</Data></Cell>
+<Cell><Data Type="String">Áo 12</Data></Cell>
+<Cell><Data Type="String">1058450080</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">0</Data></Cell>
+<Cell><Data Type="String">ADIDAS1</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456953</Data></Cell>
+<Cell><Data Type="String">New product title</Data></Cell>
+<Cell><Data Type="String">1058441074</Data></Cell>
+<Cell><Data Type="String">Xanh</Data></Cell>
+<Cell><Data Type="Number">210000</Data></Cell>
+<Cell><Data Type="String">null</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456953</Data></Cell>
+<Cell><Data Type="String">New product title</Data></Cell>
+<Cell><Data Type="String">1058441075</Data></Cell>
+<Cell><Data Type="String">Đen</Data></Cell>
+<Cell><Data Type="Number">200000</Data></Cell>
+<Cell><Data Type="String">null</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456546</Data></Cell>
+<Cell><Data Type="String">Sơ Mi Nam Tay Dài</Data></Cell>
+<Cell><Data Type="String">1058440089</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">400000</Data></Cell>
+<Cell><Data Type="String">AN-0003</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456953</Data></Cell>
+<Cell><Data Type="String">New product title</Data></Cell>
+<Cell><Data Type="String">1058669326</Data></Cell>
+<Cell><Data Type="String">Not Pink</Data></Cell>
+<Cell><Data Type="Number">99</Data></Cell>
+<Cell><Data Type="String">null</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456545</Data></Cell>
+<Cell><Data Type="String">Sơ mi caro tay ngắn</Data></Cell>
+<Cell><Data Type="String">1058440088</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">345000</Data></Cell>
+<Cell><Data Type="String">AN-0005</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456542</Data></Cell>
+<Cell><Data Type="String">Quần Kaki Nam túi hộp pastel</Data></Cell>
+<Cell><Data Type="String">1058440083</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">850000</Data></Cell>
+<Cell><Data Type="String">Q-0003</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456541</Data></Cell>
+<Cell><Data Type="String">Quần jeans nam trắng</Data></Cell>
+<Cell><Data Type="String">1058440082</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">1100000</Data></Cell>
+<Cell><Data Type="String">Q-0001</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456544</Data></Cell>
+<Cell><Data Type="String">Quần tây nam</Data></Cell>
+<Cell><Data Type="String">1058440087</Data></Cell>
+<Cell><Data Type="String">Xanh / M</Data></Cell>
+<Cell><Data Type="Number">1100000</Data></Cell>
+<Cell><Data Type="String">Q-0003</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456544</Data></Cell>
+<Cell><Data Type="String">Quần tây nam</Data></Cell>
+<Cell><Data Type="String">1058440085</Data></Cell>
+<Cell><Data Type="String">Xanh / S</Data></Cell>
+<Cell><Data Type="Number">1100000</Data></Cell>
+<Cell><Data Type="String">Q-0002</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456544</Data></Cell>
+<Cell><Data Type="String">Quần tây nam</Data></Cell>
+<Cell><Data Type="String">1058440086</Data></Cell>
+<Cell><Data Type="String">Đen / S</Data></Cell>
+<Cell><Data Type="Number">1100000</Data></Cell>
+<Cell><Data Type="String">Q-0001</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456535</Data></Cell>
+<Cell><Data Type="String">Đầm bèo tay lỡ</Data></Cell>
+<Cell><Data Type="String">1058440075</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">390000</Data></Cell>
+<Cell><Data Type="String">D-0001</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456539</Data></Cell>
+<Cell><Data Type="String">Jumpsuit ngắn bẹt vai, tay dài</Data></Cell>
+<Cell><Data Type="String">1058440079</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">550000</Data></Cell>
+<Cell><Data Type="String">J-0001</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456538</Data></Cell>
+<Cell><Data Type="String">Đầm suông không tay</Data></Cell>
+<Cell><Data Type="String">1058440078</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">590000</Data></Cell>
+<Cell><Data Type="String">D-0004</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456537</Data></Cell>
+<Cell><Data Type="String">Đầm Bẹt Vai Thô Phối Bèo</Data></Cell>
+<Cell><Data Type="String">1058440077</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">350000</Data></Cell>
+<Cell><Data Type="String">D-0003</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456534</Data></Cell>
+<Cell><Data Type="String">Đầm babydoll tay lỡ khoét lỗ</Data></Cell>
+<Cell><Data Type="String">1058440074</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">600000</Data></Cell>
+<Cell><Data Type="String">null</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456532</Data></Cell>
+<Cell><Data Type="String">Áo Sơ Mi Tay Ngắn Xanh - SML</Data></Cell>
+<Cell><Data Type="String">1058440072</Data></Cell>
+<Cell><Data Type="String">S</Data></Cell>
+<Cell><Data Type="Number">500000</Data></Cell>
+<Cell><Data Type="String">AN-0001</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456527</Data></Cell>
+<Cell><Data Type="String">Áo Sơ mi Caro tay ngắn</Data></Cell>
+<Cell><Data Type="String">1058440064</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">340000</Data></Cell>
+<Cell><Data Type="String">AN-0002</Data></Cell>
+</Row>
+<Row>
+<Cell><Data Type="type">1026456529</Data></Cell>
+<Cell><Data Type="String">Áo So Mi Tay Dài Cổ Tim</Data></Cell>
+<Cell><Data Type="String">1058440066</Data></Cell>
+<Cell><Data Type="String">Default Title</Data></Cell>
+<Cell><Data Type="Number">290000</Data></Cell>
+<Cell><Data Type="String">A-0001</Data></Cell>
+</Row>
+</Table>

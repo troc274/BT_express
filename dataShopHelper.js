@@ -1,0 +1,123 @@
+const mongoose = require('mongoose')
+import Product from './models/product';
+import requestHelper from './requestHelper'
+
+module.exports = {
+    getCount: (done) => {
+        let reqData, data
+        reqData = {
+            method: "get",
+            headers: {
+                "Authorization": "Bearer eZZ73UWykaOPRjx5ep7i2J6Jf3E_iNa6BoVEAdm7sOM",
+                "Content-Type": "application/json"
+            }
+        }
+        requestHelper.Request.http(reqData, "https://apis.haravan.com/com/products/count.json", (err, res) => {
+            if (err) console.log(err)
+            data = JSON.parse(res.response)
+            return done(data)
+        })
+    },
+    getData: (params, done) => {
+        let page = 0, data = [], dataFinal = [], dataObject = [], reqData, count = 0, totalPage, dataProducts = [['id', 'title', 'variantsId', 'variantsTitle', 'price', 'sku']]
+        totalPage = Math.ceil(params.count / 5)
+        module.exports.getDataFinalPage(totalPage, 0, [], (getDataOfPage) => {
+            for (let i in getDataOfPage) {
+                for (let b = 0; b < getDataOfPage[i].variants.length; b++) {
+                    let dataOfKey = []
+                    let dataOfKeyObject = {}
+                    dataOfKey.push(getDataOfPage[i].id)
+                    dataOfKey.push(getDataOfPage[i].title)
+                    dataOfKey.push(getDataOfPage[i].variants[b].id)
+                    dataOfKey.push(getDataOfPage[i].variants[b].title)
+                    dataOfKey.push(getDataOfPage[i].variants[b].price)
+                    dataOfKey.push(getDataOfPage[i].variants[b].sku)
+
+                    dataFinal.push(dataOfKey)
+
+                    dataOfKeyObject.id = getDataOfPage[i].id
+                    dataOfKeyObject.title = getDataOfPage[i].title
+                    dataOfKeyObject.sku = getDataOfPage[i].variants[b].sku
+                    dataOfKeyObject.barcode = getDataOfPage[i].variants[b].barcode
+                    dataOfKeyObject.inventory_quantity = getDataOfPage[i].variants[b].inventory_quantity
+                    dataOfKeyObject.price = getDataOfPage[i].variants[b].price
+
+                    dataObject.push(dataOfKeyObject)
+                }
+            }
+            return done(dataObject)
+            // for (let i in dataObject) {
+            //     Product.collection.updateOne(
+            //         { variantsId: dataObject[i].variantsId },
+            //         {
+            //             $set: {
+            //                 id: dataObject[i].id,
+            //                 title: dataObject[i].title,
+            //                 variantsId: dataObject[i].variantsId,
+            //                 variantsTitle: dataObject[i].variantsTitle,
+            //                 price: dataObject[i].price,
+            //                 sku: dataObject[i].sku
+            //             }
+            //         },
+            //         { upsert: true }
+            //     )
+            // }
+            // for (let i = 0; i < dataFinal.length; i++) {
+            //     dataProducts.push(dataFinal[i])
+            // }
+            // return done(dataProducts)
+        })
+    },
+    getDataOfPage: (page, done) => {
+        let reqData, data
+        reqData = {
+            method: "get",
+            headers: {
+                "Authorization": "Bearer eZZ73UWykaOPRjx5ep7i2J6Jf3E_iNa6BoVEAdm7sOM",
+                "Content-Type": "application/json"
+            }
+        }
+        requestHelper.Request.http(reqData, `https://apis.haravan.com/com/products.json?fields=title,variants&limit=5&page=${page}`, async (err, res) => {
+            data = JSON.parse(res.response)
+            return done(data)
+        })
+    },
+    getDataDatabase: (total, page, data, done) => {
+        if (total < page) {
+            return done(data)
+        }
+        Product.find({}).limit(5).skip(page).then((dataProduct) => {
+            data = data.concat(dataProduct)
+            page += 5
+            module.exports.getDataDatabase(total, page, data, done)
+        })
+    },
+    getDataFinalPage: (total, page, data, done) => {
+        let reqData, dataParse
+        if (total == page) {
+            return done(data)
+        }
+        reqData = {
+            method: "get",
+            headers: {
+                "Authorization": "Bearer eZZ73UWykaOPRjx5ep7i2J6Jf3E_iNa6BoVEAdm7sOM",
+                "Content-Type": "application/json"
+            }
+        }
+        page++
+        requestHelper.Request.http(reqData, `https://apis.haravan.com/com/products.json?fields=title,variants&limit=5&page=${page}`, async (err, res) => {
+            dataParse = JSON.parse(res.response)
+            for (let i = 0; i < dataParse.products.length; i++) {
+                data.push(dataParse.products[i])
+            }
+            module.exports.getDataFinalPage(total, page, data, done)
+        })
+    },
+    getDataOfPageLimit: (data, params, done) => {
+        let result = []
+        for (let i = params.count; i < params.getCountProduct; i++) {
+            if (data[i] != null) result.push(data[i])
+        }
+        return done(result)
+    },
+}

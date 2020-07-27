@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <script src="../modules/angular/angular.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="productController">
+    <h1>{{title}}</h1>
+
+    <table border="0">
+        <tr>
+            <th>Sản phẩm</th>
+            <th>SKU</th>
+            <th>Barcode</th>
+            <th>Khả dụng</th>
+            <th>Giá bán</th>
+        </tr>
+        <tr ng-repeat="product in listProduct">
+            <td>{{ product.title }}</td>
+            <td>{{ product.sku}}</td>
+            <td>{{ product.barcode}}</td>
+            <td>{{ product.inventory_quantity}}</td>
+            <td>{{ product.price}}</td>
+        </tr>
+    </table>
+
+    <!-- <button ng-click="getPro"></button> -->
+    <select name="count" ng-model="countModel" ng-change="currenPage = 1; getListProduct()">
+        <option value="5">Hiển thị 5</option>
+        <option value="20">Hiển thị 20</option>
+        <option value="50">Hiển thị 50</option>
+    </select>
+</body>
+
+</html>
