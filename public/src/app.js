@@ -13,7 +13,7 @@ function productController($scope, $http) {
         console.log($scope.countModel, $scope.currenPage)
         $http.get(`/product?limit=${$scope.countModel}&page=${$scope.currenPage}`).then((result) => {
             console.log(result)
-            $scope.listProduct = result.data;
+            $scope.listProduct = result.data.product;
         });
     }
 
