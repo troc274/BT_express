@@ -114,10 +114,11 @@ module.exports = {
         })
     },
     getDataOfPageLimit: (data, params, done) => {
-        let result = []
+        let product = [], result = {}
         for (let i = params.count; i < params.getCountProduct; i++) {
-            if (data[i] != null) result.push(data[i])
+            if (data[i] != null) product.push(data[i])
         }
+        result.product = product
         return done(result)
     },
 }

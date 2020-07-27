@@ -183,15 +183,17 @@ postRouter.get('/showData/:userId', (req, res) => {
 })
 
 postRouter.get('/product', (req, res) => {
-    let getData, params, result = []
+    let getData, params, result = [], totalPage
     try {
         params = req.query
         params.count = (params.limit * params.page - params.limit)
         params.getCountProduct = params.limit * params.page
         dataShopHelper.getCount((getCount) => {
+            totalPage = Math.ceil(getCount.count / params.limit)
             if (typeof (getCount) != "object") return res.json({ message: "Loi data" })
             dataShopHelper.getData(getCount, (getData) => {
                 dataShopHelper.getDataOfPageLimit(getData, params, (data) => {
+                    data.totalPage = totalPage
                     return res.send(data)
                 })
             })
