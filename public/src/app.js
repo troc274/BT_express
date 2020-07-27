@@ -38,6 +38,13 @@ function productController($scope, $http) {
                 $scope.loading = false;
             });
     };
+    $scope.geProductInfo = (productId, variantId) => {
+        $http
+            .get(`/product/info?productId=${productId}&variantId=${variantId}`)
+            .then((result) => {
+                $scope.infoProduct = result.data
+            });
+    }
 
     $scope.getListProduct();
 }
