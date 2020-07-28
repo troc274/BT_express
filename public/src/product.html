@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">{{title}}</h1>
+            <div class="data-table">
+                <div class="spinner spinner-border text-primary" ng-class="{'d-none': !loading}" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <table class="table text-center" ng-class="{disabled:
+                          loading}">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Tên sản phẩm</th>
+                            <th>SKU</th>
+                            <th>Barcode</th>
+                            <th>Khả dụng</th>
+                            <th>Giá bán</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left">
+                                {{ product.title }}
+                            </td>
+                            <td>{{ product.variants.sku}}</td>
+                            <td>{{ product.variants.barcode}}</td>
+                            <td>{{ product.variants.inventory_quantity}}</td>
+                            <td>{{ product.variants.price}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
