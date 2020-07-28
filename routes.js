@@ -171,6 +171,9 @@ const postRouter = express.Router();
 postRouter.get('/', (req, res) => {
     res.redirect('/src/index.html')
 })
+postRouter.get('/order', (req, res) => {
+    res.redirect('/src/order.html')
+})
 
 postRouter.get('/showData/:userId', (req, res) => {
     let listUsers = [{ id: 1, name: 'Nguyễn Văn A' }, { id: 2, name: 'Hoàng Thị B' }, { id: 3, name: 'Phan Huy C' }];
@@ -188,7 +191,7 @@ postRouter.get('/product', (req, res) => {
     try {
         params = req.query
         params.count = (params.limit * params.page - params.limit)
-        params.getCountProduct = params.limit * params.page
+        params.getCountOrder = params.limit * params.page
         dataShopHelper.getCount((getCount) => {
             if (typeof (getCount) != "object") return res.json({ message: "Loi data" })
             dataShopHelper.getData(getCount, (getData) => {
@@ -205,13 +208,29 @@ postRouter.get('/product', (req, res) => {
 })
 
 postRouter.get('/product/info', (req, res) => {
-    let getData, params, result = [], totalPage
+    let params
     try {
         params = req.query
         dataShopHelper.getInfoProduct(params, (data) => {
-            if (!data) return res.json({ message: "Sản phẩm không tồn tại" })
+            if (!data) return res.status(400).send({ message: "Sản phẩm không tồn tại" })
             return res.send(data)
         })
+    }
+    catch (error) {
+        console.log(error)
+    }
+})
+
+postRouter.get('/orders', async (req, res) => {
+    let params, data, dataOfPage
+    try {
+        params = req.query
+        params.count = (params.limit * params.page - params.limit)
+        params.getCountOrder = params.limit * params.page
+        data = await dataShopHelper.getOrders()
+        dataOfPage = await dataShopHelper.getOrderOfPageLimit(data, params)
+        dataOfPage.totalPage = Math.ceil(data.length / params.limit)
+        return res.status(200).send(dataOfPage)
     }
     catch (error) {
         console.log(error)

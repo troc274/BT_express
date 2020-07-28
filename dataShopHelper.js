@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 import Product from './models/product';
 import requestHelper from './requestHelper'
+import { resolve } from 'path';
+import { rejects } from 'assert';
 
 module.exports = {
     getCount: (done) => {
@@ -145,5 +147,50 @@ module.exports = {
             }
             return done(product)
         })
-    }
+    },
+    getOrders: (done) => {
+        let reqData, dataParse, orders, listOrders = []
+        return new Promise(async (resolve, reject) => {
+            try {
+                reqData = {
+                    method: "get",
+                    headers: {
+                        "Authorization": "Bearer eZZ73UWykaOPRjx5ep7i2J6Jf3E_iNa6BoVEAdm7sOM",
+                        "Content-Type": "application/json"
+                    }
+                }
+                requestHelper.Request.http(reqData, `https://apis.haravan.com/com/orders.json`, async (err, res) => {
+                    if (res.statusCode != 200 || err) return done(null)
+                    dataParse = JSON.parse(res.response)
+                    orders = dataParse.orders
+                    for (let i = 0; i < orders.length; i++) {
+                        let newOrders = {}
+                        newOrders.id = orders[i].id
+                        newOrders.created_at = orders[i].created_at
+                        newOrders.billing_address = orders[i].billing_address
+                        newOrders.total_price = orders[i].total_price
+                        listOrders.push(newOrders)
+                    }
+                    return resolve(listOrders)
+                })
+            } catch (error) {
+                return reject(error)
+            }
+        })
+    },
+    getOrderOfPageLimit: (data, params) => {
+        let order = [], result = {}
+        return new Promise(async (resolve, reject) => {
+            try {
+                for (let i = params.count; i < params.getCountOrder; i++) {
+                    if (data[i] != null) order.push(data[i])
+                }
+                result.order = order
+                return resolve(result)
+            } catch (error) {
+                return reject(error)
+            }
+        })
+
+    },
 }
