@@ -196,13 +196,13 @@ postRouter.get("/product", (req, res) => {
     }
 });
 
-postRouter.get("/product/info", (req, res) => {
+postRouter.get("/product/info/:productId/:variantId", (req, res) => {
     let getData,
         params,
         result = [],
         totalPage;
     try {
-        params = req.query;
+        params = req.params;
         dataShopHelper.getInfoProduct(params, (data) => {
             if (!data) return res.json({ message: "Sản phẩm không tồn tại" });
             return res.send(data);

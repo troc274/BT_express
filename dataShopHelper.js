@@ -3,6 +3,7 @@ import Product from './models/product';
 import requestHelper from './requestHelper'
 import { resolve } from 'path';
 import { rejects } from 'assert';
+const dateFormat = require('dateformat');
 
 module.exports = {
     getCount: (done) => {
@@ -140,7 +141,6 @@ module.exports = {
             dataParse = JSON.parse(res.response)
             product = dataParse.product
             for (let i = 0; i < product.variants.length; i++) {
-                console.log(params.variantId, product.variants[i].id)
                 if (params.variantId == product.variants[i].id) {
                     product.variants = product.variants[i]
                 }
@@ -166,8 +166,8 @@ module.exports = {
                     for (let i = 0; i < orders.length; i++) {
                         let newOrders = {}
                         newOrders.id = orders[i].id
-                        newOrders.created_at = orders[i].created_at
-                        newOrders.billing_address = orders[i].billing_address
+                        newOrders.created_at = dateFormat(orders[i].created_at)
+                        newOrders.billing_address = `${orders[i].billing_address.address1} - ${orders[i].billing_address.district} - ${orders[i].billing_address.province}`
                         newOrders.total_price = orders[i].total_price
                         listOrders.push(newOrders)
                     }

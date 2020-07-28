@@ -10,22 +10,32 @@
                           loading}">
                     <thead class="thead-dark">
                         <tr>
-                            <th>Tên sản phẩm</th>
-                            <th>SKU</th>
-                            <th>Barcode</th>
-                            <th>Khả dụng</th>
-                            <th>Giá bán</th>
+                            <th>Id</th>
+                            <th>Mã Sản Phẩm</th>
+                            <th>Ngày Tạo</th>
+                            <th>Hình ảnh</th>
+                            <th>Áp dụng khuyến mãi</th>
+                            <th>Tên biến thể</th>
+                            <th>Số lượng</th>
+                            <th>Giá</th>
+                            <th>Giá So Sánh</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="text-left">
-                                {{ product.title }}
+                                {{ product.id }}
                             </td>
-                            <td>{{ product.variants.sku}}</td>
-                            <td>{{ product.variants.barcode}}</td>
-                            <td>{{ product.variants.inventory_quantity}}</td>
-                            <td>{{ product.variants.price}}</td>
+                            <td>{{ product.variants[0].id}}</td>
+                            <td>{{ product.variants[0].created_at}}</td>
+                            <td><img src="{{ product.images[0].src}}" alt="Italian Trulli" width="200" height="200">
+                            </td>
+                            <td>Không biết</td>
+                            <td>{{ product.variants[0].title}}</td>
+                            <td>{{ product.variants[0].inventory_quantity}}</td>
+                            <td>{{ product.variants[0].price}}</td>
+                            <td>{{ product.variants[0].compare_at_price}}</td>
+
                         </tr>
                     </tbody>
                 </table>

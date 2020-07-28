@@ -52,17 +52,19 @@ function HomeController($scope, $http) {
 }
 
 function ProductController($scope, $http, $routeParams) {
+  console.log($routeParams)
   let productId = $routeParams.productId;
   let varientId = $routeParams.varientId;
   $scope.getProductInfo = (productId, variantId) => {
+    console.log("varianId", variantId)
     $http
-      .get(`/product/info?productId=${productId}&variantId=${variantId}`)
+      .get(`/product/info/${productId}/${variantId}`)
       .then((result) => {
         console.log("product", result);
         $scope.product = result.data;
       });
   };
-  $scope.getProductInfo(productId, varientId);
+  $scope.getProductInfo(productId, variantId);
 }
 
 function OrderController($scope, $http) {
@@ -88,7 +90,6 @@ function OrderController($scope, $http) {
           break;
       }
     }
-    console.log($scope.countModel, $scope.currenPage);
     $http
       .get(`/orders?limit=${$scope.countModel}&page=${$scope.currenPage}`)
       .then((result) => {
@@ -116,7 +117,7 @@ app
 
 app.config(function ($routeProvider, $locationProvider) {
   $routeProvider
-    .when("/product/:productId/:varientId", {
+    .when("/product/info/:productId/:variantId", {
       templateUrl: "product.html",
       controller: "ProductController",
     })
@@ -128,5 +129,4 @@ app.config(function ($routeProvider, $locationProvider) {
       templateUrl: "order.html",
       controller: "OrderController",
     });
-  //
 });

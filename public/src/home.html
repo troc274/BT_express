@@ -21,7 +21,7 @@
                         <tr ng-repeat="product in listProduct">
                             <td class="text-left">
                                 <a href="#"
-                                    ng-click="redirectPage($event, '/product/'+ product.id +'/' + product.variants.id);">{{ product.title }}</a>
+                                    ng-click="redirectPage($event, '/product/info/'+ product.id +'/' + product.variants.id);">{{ product.title }}</a>
                             </td>
                             <td>{{ product.variants.sku}}</td>
                             <td>{{ product.variants.barcode}}</td>

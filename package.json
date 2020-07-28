@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "angular": "^1.8.0",
+    "dateformat": "^3.0.3",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
     "mongoose": "^5.9.25",
