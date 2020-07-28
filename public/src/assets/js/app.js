@@ -8,6 +8,9 @@ function MainController($scope, $route, $routeParams, $location) {
     e.preventDefault();
     $location.path(path);
   };
+  $scope.getClass = function (path) {
+    return $location.path() === path ? "active" : "";
+  };
 }
 
 function HomeController($scope, $http) {
@@ -52,17 +55,15 @@ function HomeController($scope, $http) {
 }
 
 function ProductController($scope, $http, $routeParams) {
-  console.log($routeParams)
+  console.log($routeParams);
   let productId = $routeParams.productId;
   let variantId = $routeParams.variantId;
   $scope.getProductInfo = (productId, variantId) => {
-    console.log("varianId", variantId)
-    $http
-      .get(`/product/info/${productId}/${variantId}`)
-      .then((result) => {
-        console.log("product", result);
-        $scope.product = result.data;
-      });
+    console.log("varianId", variantId);
+    $http.get(`/product/info/${productId}/${variantId}`).then((result) => {
+      console.log("product", result);
+      $scope.product = result.data;
+    });
   };
   $scope.getProductInfo(productId, variantId);
 }
