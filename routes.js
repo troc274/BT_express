@@ -172,19 +172,8 @@ const postRouter = express.Router();
 postRouter.get("/", (req, res) => {
     res.sendFile(path.join(__dirname + "/public/src/index.html"));
 });
-
-postRouter.get("/showData/:userId", (req, res) => {
-    let listUsers = [
-        { id: 1, name: "Nguyễn Văn A" },
-        { id: 2, name: "Hoàng Thị B" },
-        { id: 3, name: "Phan Huy C" },
-    ];
-    let userId = req.params.userId;
-
-    let user = listUsers.find((u) => u.id == userId);
-    if (user) {
-        res.send(user.name);
-    } else res.send("User not found!!!");
+postRouter.get("/order", (req, res) => {
+    res.sendFile(path.join(__dirname + "/public/src/order.html"));
 });
 
 postRouter.get("/product", (req, res) => {
