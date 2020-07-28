@@ -54,7 +54,7 @@ function HomeController($scope, $http) {
 function ProductController($scope, $http, $routeParams) {
   console.log($routeParams)
   let productId = $routeParams.productId;
-  let varientId = $routeParams.varientId;
+  let variantId = $routeParams.variantId;
   $scope.getProductInfo = (productId, variantId) => {
     console.log("varianId", variantId)
     $http
