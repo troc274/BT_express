@@ -1,16 +1,18 @@
-import express from 'express';
-import dataShopHelper from './dataShopHelper'
-import Product from './models/product';
-import { CONNREFUSED } from 'dns';
-import { count } from 'console';
-import { get } from 'request';
-const xlsxFile = require('read-excel-file/node');
-const parser = require('xml2json');
-const xlsx = require('node-xlsx');
-const fs = require('fs');
-const xmlwriter = require('xml-writer')
+import express from "express";
+import dataShopHelper from "./dataShopHelper";
+import Product from "./models/product";
+import { CONNREFUSED } from "dns";
+import { count } from "console";
+import { get } from "request";
+const xlsxFile = require("read-excel-file/node");
+const parser = require("xml2json");
+const xlsx = require("node-xlsx");
+const fs = require("fs");
+const path = require("path");
+const xmlwriter = require("xml-writer");
 
 const postRouter = express.Router();
+
 
 // postRouter.get('/dataShop/excel', (req, res) => {
 //     let getData
@@ -162,64 +164,67 @@ const postRouter = express.Router();
 //             res.json({ message: "Thanh cong" })
 //         }
 
-
 //     } catch (error) {
 //         console.error(`ERROR: ${error}`)
 //     }
 // })
 
-postRouter.get('/', (req, res) => {
-    res.redirect('/src/index.html')
-})
-postRouter.get('/order', (req, res) => {
-    res.redirect('/src/order.html')
-})
+postRouter.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname + "/public/src/index.html"));
+});
 
-postRouter.get('/showData/:userId', (req, res) => {
-    let listUsers = [{ id: 1, name: 'Nguyễn Văn A' }, { id: 2, name: 'Hoàng Thị B' }, { id: 3, name: 'Phan Huy C' }];
+postRouter.get("/showData/:userId", (req, res) => {
+    let listUsers = [
+        { id: 1, name: "Nguyễn Văn A" },
+        { id: 2, name: "Hoàng Thị B" },
+        { id: 3, name: "Phan Huy C" },
+    ];
     let userId = req.params.userId;
 
-    let user = listUsers.find(u => u.id == userId)
+    let user = listUsers.find((u) => u.id == userId);
     if (user) {
-        res.send(user.name)
-    }
-    else res.send('User not found!!!')
-})
+        res.send(user.name);
+    } else res.send("User not found!!!");
+});
 
-postRouter.get('/product', (req, res) => {
-    let getData, params, result = [], totalPage
+postRouter.get("/product", (req, res) => {
+    let getData,
+        params,
+        result = [],
+        totalPage;
     try {
-        params = req.query
-        params.count = (params.limit * params.page - params.limit)
-        params.getCountOrder = params.limit * params.page
+        params = req.query;
+        params.count = params.limit * params.page - params.limit;
+        params.getCountProduct = params.limit * params.page;
         dataShopHelper.getCount((getCount) => {
-            if (typeof (getCount) != "object") return res.json({ message: "Loi data" })
+            if (typeof getCount != "object") return res.json({ message: "Loi data" });
             dataShopHelper.getData(getCount, (getData) => {
                 dataShopHelper.getDataOfPageLimit(getData, params, (data) => {
-                    data.totalPage = Math.ceil(getData.length / params.limit)
-                    return res.send(data)
-                })
-            })
-        })
+                    data.totalPage = Math.ceil(getData.length / params.limit);
+                    return res.send(data);
+                });
+            });
+        });
+    } catch (error) {
+        console.log(error);
     }
-    catch (error) {
-        console.log(error)
-    }
-})
+});
 
-postRouter.get('/product/info', (req, res) => {
-    let params
+postRouter.get("/product/info", (req, res) => {
+    let getData,
+        params,
+        result = [],
+        totalPage;
     try {
-        params = req.query
+        params = req.query;
         dataShopHelper.getInfoProduct(params, (data) => {
-            if (!data) return res.status(400).send({ message: "Sản phẩm không tồn tại" })
-            return res.send(data)
-        })
+            if (!data) return res.json({ message: "Sản phẩm không tồn tại" });
+            return res.send(data);
+        });
+    } catch (error) {
+        console.log(error);
     }
-    catch (error) {
-        console.log(error)
-    }
-})
+});
 
 postRouter.get('/orders', async (req, res) => {
     let params, data, dataOfPage
