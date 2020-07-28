@@ -99,6 +99,9 @@ function OrderController($scope, $http) {
         }
         $scope.totalPage = totalPage;
         $scope.loading = false;
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -109,7 +112,7 @@ app
   .controller("MainController", MainController)
   .controller("HomeController", HomeController)
   .controller("ProductController", ProductController)
-  .controller("OrderController", OrderController)
+  .controller("OrderController", OrderController);
 
 app.config(function ($routeProvider, $locationProvider) {
   $routeProvider
@@ -123,6 +126,6 @@ app.config(function ($routeProvider, $locationProvider) {
     })
     .when("/order", {
       templateUrl: "order.html",
-      controller: "OrderController"
+      controller: "OrderController",
     });
 });
