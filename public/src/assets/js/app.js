@@ -9,7 +9,6 @@ function MainController($scope, $route, $routeParams, $location) {
     $location.path(path);
   };
   $scope.getClass = function (path) {
-    console.log($location.path() === path ? "active" : "")
     return $location.path() === path ? "active" : "";
   };
 }
@@ -65,19 +64,22 @@ function ProductController($scope, $http, $routeParams) {
     });
   };
   $scope.getProductInfo(productId, variantId);
+}
 
+function CreateOrderController($scope, $http) {
+  $scope.title = "Create Order"
   $scope.getListProduct = () => {
     $http
       .get(`/product`)
       .then((result) => {
+        console.log("alo")
         $scope.listProduct = result.data
       })
   }
-  $scope.products = {}
+
   $scope.getListProduct();
 
   $scope.postProduct = () => {
-    console.log($scope)
     let order = {}
     let infoCustomer = {
       email: $scope.emailCustomer,
@@ -160,5 +162,9 @@ app.config(function ($routeProvider, $locationProvider) {
     .when("/order", {
       templateUrl: "order.html",
       controller: "OrderController",
+    })
+    .when("/order/create", {
+      templateUrl: "createOrder.html",
+      controller: "CreateOrderController",
     });
 });

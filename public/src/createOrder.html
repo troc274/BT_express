@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <a>{{title}}</a>
+            <form>
+                <label for="Email">Email:</label><br>
+                <input type="text" ng-model="emailCustomer"><br>
+                <label for="Soluong">Số lượng:</label><br>
+                <input type="number" ng-model="quantity"><br><br>
+                <label for="soluong">Sản phẩm:</label><br>
+                <select style="width: 300px;" class="form-control" name="product" ng-model="selectProduct">
+                    <option ng-repeat="product in listProduct" value="{{product.variants.id}}">{{product.title}} -
+                        {{product.variants.title}}</option>
+                </select>
+                <input type="submit" value="Submit" ng-click="postProduct()">
+            </form>
+        </div>
+    </div>
+</div>
