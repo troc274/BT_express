@@ -26,19 +26,47 @@
                             <td class="text-left">
                                 {{ product.id }}
                             </td>
-                            <td>{{ product.variants[0].id}}</td>
-                            <td>{{ product.variants[0].created_at}}</td>
-                            <td><img src="{{ product.images[0].src}}" alt="Italian Trulli" width="200" height="200">
+                            <td>{{ product.variants.id}}</td>
+                            <td>{{ product.variants.created_at}}</td>
+                            <td><img src="{{ product.images[0].src}}" alt="Không có hình ^,..,^" width="200"
+                                    height="200">
                             </td>
                             <td>Không biết</td>
-                            <td>{{ product.variants[0].title}}</td>
-                            <td>{{ product.variants[0].inventory_quantity}}</td>
-                            <td>{{ product.variants[0].price}}</td>
-                            <td>{{ product.variants[0].compare_at_price}}</td>
-
+                            <td>{{ product.variants.title}}</td>
+                            <td>{{ product.variants.inventory_quantity}}</td>
+                            <td>{{ product.variants.price}}</td>
+                            <td>{{ product.variants.compare_at_price}}</td>
                         </tr>
                     </tbody>
                 </table>
+
+                <!-- <tr>
+                    <td>Email:</td>
+                    <td><input type="text"></td>
+                </tr> -->
+                <!-- <td>Sản Phẩm</td>
+                    <td><select style="width: 150px;" class="form-control" name="count" ng-model="countModel">
+                            <option ng-repeat="product in listProduct" value="{{product.variants.id}}">{{product.title}}
+                                -
+                                {{product.variants.title}}</option>
+                        </select></td> -->
+                <!-- <tr>
+                    <td>Số Lượng:</td>
+                    <td><input type="number"></td>
+                </tr> -->
+                <form>
+                    <label for="Email">Email:</label><br>
+                    <input type="text" ng-model="emailCustomer"><br>
+                    <label for="Soluong">Số lượng:</label><br>
+                    <input type="number" ng-model="quantity"><br><br>
+                    <label for="soluong">Sản phẩm:</label><br>
+                    <select style="width: 300px;" class="form-control" name="product" ng-model="selectProduct">
+                        <option ng-repeat="product in listProduct" value="{{product.variants.id}}">{{product.title}} -
+                            {{product.variants.title}}</option>
+                    </select>
+                    <input type="submit" value="Submit" ng-click="postProduct()">
+                </form>
+
             </div>
 
         </div>

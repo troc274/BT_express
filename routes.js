@@ -4,12 +4,14 @@ import Product from "./models/product";
 import { CONNREFUSED } from "dns";
 import { count } from "console";
 import { get } from "request";
+import requestHelper from "./requestHelper";
 const xlsxFile = require("read-excel-file/node");
 const parser = require("xml2json");
 const xlsx = require("node-xlsx");
 const fs = require("fs");
 const path = require("path");
 const xmlwriter = require("xml-writer");
+var request = require('request');
 
 const postRouter = express.Router();
 
@@ -185,6 +187,7 @@ postRouter.get("/product", (req, res) => {
         dataShopHelper.getCount((getCount) => {
             if (typeof getCount != "object") return res.json({ message: "Loi data" });
             dataShopHelper.getData(getCount, (getData) => {
+                if (!params.limit) return res.send(getData)
                 dataShopHelper.getDataOfPageLimit(getData, params, (data) => {
                     data.totalPage = Math.ceil(getData.length / params.limit);
                     return res.send(data);
@@ -227,5 +230,25 @@ postRouter.get('/orders', async (req, res) => {
         console.log(error)
     }
 })
+
+postRouter.post('/orders/create', async (req, res) => {
+    let data
+    var options = {
+        'method': 'POST',
+        'url': 'https://apis.haravan.com/com/orders.json',
+        'headers': {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer eZZ73UWykaOPRjx5ep7i2J6Jf3E_iNa6BoVEAdm7sOM'
+        },
+        body: JSON.stringify(req.body)
+
+    };
+    request(options, function (error, response) {
+        if (error) throw new Error(error);
+        data = JSON.parse(response.body)
+        res.send(data)
+    });
+})
+
 //
 export default postRouter;

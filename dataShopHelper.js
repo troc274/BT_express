@@ -145,6 +145,7 @@ module.exports = {
                     product.variants = product.variants[i]
                 }
             }
+            product.variants.created_at = dateFormat(product.variants.created_at)
             return done(product)
         })
     },

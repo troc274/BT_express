@@ -9,14 +9,13 @@ function MainController($scope, $route, $routeParams, $location) {
     $location.path(path);
   };
   $scope.getClass = function (path) {
+    console.log($location.path() === path ? "active" : "")
     return $location.path() === path ? "active" : "";
   };
 }
 
 function HomeController($scope, $http) {
   $scope.title = "List Product";
-  // $scope.userName = '';
-  // $scope.userId = 0;
   $scope.countModel = "5";
   $scope.currenPage = 1;
   $scope.totalPage = [];
@@ -55,9 +54,9 @@ function HomeController($scope, $http) {
 }
 
 function ProductController($scope, $http, $routeParams) {
-  console.log($routeParams);
   let productId = $routeParams.productId;
   let variantId = $routeParams.variantId;
+  $scope.title = "Chi tiết sản phẩm"
   $scope.getProductInfo = (productId, variantId) => {
     console.log("varianId", variantId);
     $http.get(`/product/info/${productId}/${variantId}`).then((result) => {
@@ -66,6 +65,38 @@ function ProductController($scope, $http, $routeParams) {
     });
   };
   $scope.getProductInfo(productId, variantId);
+
+  $scope.getListProduct = () => {
+    $http
+      .get(`/product`)
+      .then((result) => {
+        $scope.listProduct = result.data
+      })
+  }
+  $scope.products = {}
+  $scope.getListProduct();
+
+  $scope.postProduct = () => {
+    console.log($scope)
+    let order = {}
+    let infoCustomer = {
+      email: $scope.emailCustomer,
+      fulfillment_status: "fulfilled"
+    }
+    let infoVariant = {
+      variant_id: $scope.selectProduct,
+      quantity: $scope.quantity
+    }
+    order.order = infoCustomer
+    order.order.line_items = []
+    order.order.line_items.push(infoVariant)
+
+    $http.post("http://0.0.0.0:3001/orders/create", order).then((result) => {
+      $scope.status == result.status
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
 }
 
 function OrderController($scope, $http) {
